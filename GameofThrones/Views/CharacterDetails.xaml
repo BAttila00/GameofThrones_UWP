@@ -1,0 +1,196 @@
+﻿<Page
+    x:Class="GameofThrones.Views.CharacterDetails"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:GameofThrones.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+	xmlns:vm="using:GameofThrones.ViewModels"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+	<Page.DataContext>
+		<vm:CharacterDetailsViewModel x:Name="ViewModel"/>
+	</Page.DataContext>
+
+	<Grid>
+		<Grid.Background>
+			<ImageBrush Stretch="None" ImageSource="/Images/characters01.jpg"/>
+		</Grid.Background>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="Auto" />
+		</Grid.ColumnDefinitions>
+
+		<Button Tapped="GotLogoTapped" Grid.Row="0" Grid.Column="0">
+			<Image Source="/Images/GOTlogo.png" Width="150"/>
+		</Button>
+
+		<Border Grid.Row="0" Grid.Column="1">
+			<Border.Background>
+				<SolidColorBrush Color="White" Opacity="0.4"/>
+			</Border.Background>
+			<TextBlock Text="Titles" HorizontalAlignment="Center" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" />
+		</Border>
+		<ListView Grid.Row="1" Grid.Column="1" Height="150" Margin="0,0,0,0" VerticalAlignment="Top" ItemsSource="{Binding Character.titles}">
+			<!--itt is lehetne ez de akkor a list-ben levo elemek is elhalvanyulnak: Background="White"  Opacity="0.7"-->
+			<ListView.Background>
+				<SolidColorBrush Color="White" Opacity="0.4"/>
+			</ListView.Background>
+		</ListView>
+
+		<Border Grid.Row="0" Grid.Column="2">
+			<Border.Background>
+				<SolidColorBrush Color="White" Opacity="0.4"/>
+			</Border.Background>
+			<TextBlock Text="Aliases" HorizontalAlignment="Center" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+		</Border>
+		<ListView Grid.Row="1" Grid.Column="2" Height="150" Margin="0,0,0,0" VerticalAlignment="Top" ItemsSource="{Binding Character.aliases}">
+			<!--itt is lehetne ez de akkor a list-ben levo elemek is elhalvanyulnak: Background="White"  Opacity="0.7"-->
+			<ListView.Background>
+				<SolidColorBrush Color="White" Opacity="0.4"/>
+			</ListView.Background>
+		</ListView>
+
+		<Border Grid.Row="0" Grid.Column="3">
+			<Border.Background>
+				<SolidColorBrush Color="White" Opacity="0.4"/>
+			</Border.Background>
+			<TextBlock Text="Allegiances" HorizontalAlignment="Center" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" />
+		</Border>
+		<ListView x:Name="AllegiancesList" DoubleTapped="AllegiancesDoubleTapped" Grid.Row="1" Grid.Column="3" Height="150" Margin="0,0,0,0" VerticalAlignment="Top" ItemsSource="{Binding Allegiances}">
+			<!--itt is lehetne ez de akkor a list-ben levo elemek is elhalvanyulnak: Background="White"  Opacity="0.7"-->
+			<ListView.Background>
+				<SolidColorBrush Color="White" Opacity="0.4"/>
+			</ListView.Background>
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<TextBlock Text="{Binding name}" />
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+
+		<Border Grid.Row="0" Grid.Column="4">
+			<Border.Background>
+				<SolidColorBrush Color="White" Opacity="0.4"/>
+			</Border.Background>
+			<TextBlock Text="Books this character was in" HorizontalAlignment="Center" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MaxWidth="140"/>
+		</Border>
+		<ListView x:Name="BooksList" DoubleTapped="BooksDoubleTapped" Grid.Row="1" Grid.Column="4" Height="150" Margin="0,0,0,0" VerticalAlignment="Top" ItemsSource="{Binding Books}">
+			<!--itt is lehetne ez de akkor a list-ben levo elemek is elhalvanyulnak: Background="White"  Opacity="0.7"-->
+			<ListView.Background>
+				<SolidColorBrush Color="White" Opacity="0.4"/>
+			</ListView.Background>
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<TextBlock Text="{Binding name}" />
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+
+		<Border Grid.Row="2" Grid.Column="1">
+			<Border.Background>
+				<SolidColorBrush Color="White" Opacity="0.4"/>
+			</Border.Background>
+			<TextBlock Text="Books this character was POV in" HorizontalAlignment="Center" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MaxWidth="140"/>
+		</Border>
+		<ListView x:Name="PovBooksList" DoubleTapped="PovBooksDoubleTapped" Grid.Row="3" Grid.Column="1" Height="150" Margin="0,0,0,0" VerticalAlignment="Top" ItemsSource="{Binding PovBooks}">
+			<!--itt is lehetne ez de akkor a list-ben levo elemek is elhalvanyulnak: Background="White"  Opacity="0.7"-->
+			<ListView.Background>
+				<SolidColorBrush Color="White" Opacity="0.4"/>
+			</ListView.Background>
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<TextBlock Text="{Binding name}" />
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+
+		<Border Grid.Row="2" Grid.Column="2">
+			<Border.Background>
+				<SolidColorBrush Color="White" Opacity="0.4"/>
+			</Border.Background>
+			<TextBlock Text="Tv series seasons this character was in" HorizontalAlignment="Center" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MaxWidth="140"/>
+		</Border>
+		<ListView Grid.Row="3" Grid.Column="2" Height="150" Margin="0,0,0,0" VerticalAlignment="Top" ItemsSource="{Binding Character.tvSeries}">
+			<!--itt is lehetne ez de akkor a list-ben levo elemek is elhalvanyulnak: Background="White"  Opacity="0.7"-->
+			<ListView.Background>
+				<SolidColorBrush Color="White" Opacity="0.4"/>
+			</ListView.Background>
+		</ListView>
+
+		<Border Grid.Row="2" Grid.Column="3">
+			<Border.Background>
+				<SolidColorBrush Color="White" Opacity="0.4"/>
+			</Border.Background>
+			<TextBlock Text="This character was played by" HorizontalAlignment="Center" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MaxWidth="140"/>
+		</Border>
+		<ListView Grid.Row="3" Grid.Column="3" Height="150" Margin="0,0,0,0" VerticalAlignment="Top" ItemsSource="{Binding Character.playedBy}">
+			<!--itt is lehetne ez de akkor a list-ben levo elemek is elhalvanyulnak: Background="White"  Opacity="0.7"-->
+			<ListView.Background>
+				<SolidColorBrush Color="White" Opacity="0.4"/>
+			</ListView.Background>
+		</ListView>
+
+		<Border Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+			<Border.Background>
+				<SolidColorBrush Color="White" Opacity="0.4"/>
+			</Border.Background>
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="Auto" />
+				</Grid.ColumnDefinitions>
+				<TextBlock Text="Name: " Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+				<TextBlock Text="{Binding Character.name}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0"  TextWrapping="Wrap" VerticalAlignment="Top"/>
+
+				<TextBlock Text="Gender: " Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+				<TextBlock Text="{Binding Character.gender}" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0"  TextWrapping="Wrap" VerticalAlignment="Top"/>
+
+				<TextBlock Text="Culture: " Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+				<TextBlock Text="{Binding Character.culture}" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0"  TextWrapping="Wrap" VerticalAlignment="Top"/>
+
+				<TextBlock Text="Born: " Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+				<TextBlock Text="{Binding Character.born}" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0"  TextWrapping="Wrap" VerticalAlignment="Top"/>
+
+				<TextBlock Text="Died: " Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+				<TextBlock Text="{Binding Character.died}" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0"  TextWrapping="Wrap" VerticalAlignment="Top"/>
+
+				<TextBlock Text="Father: " Grid.Row="5" Grid.Column="0" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+				<Button x:Name="Father" Tapped="FatherButtonTapped"  Content="{Binding Father.name}" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+
+				<TextBlock Text="Mother: " Grid.Row="6" Grid.Column="0" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+				<Button x:Name="Mother" Tapped="MotherButtonTapped" Content="{Binding Mother.name}" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+
+				<TextBlock Text="Spouse: " Grid.Row="7" Grid.Column="0" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+				<Button x:Name="Spouse" Tapped="SpouseButtonTapped" Content="{Binding Spouse.name}" Grid.Row="7" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+			</Grid>
+		</Border>
+		
+
+	</Grid>
+</Page>

@@ -1,0 +1,170 @@
+﻿<Page
+    x:Class="GameofThrones.Views.HouseDetails"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:GameofThrones.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+	xmlns:vm="using:GameofThrones.ViewModels"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+	<Page.DataContext>
+		<vm:HouseDetailsViewModel x:Name="ViewModel"/>
+	</Page.DataContext>
+
+	<Grid >
+		<!--<Image Stretch="None" Source="/Images/wolf01.png" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0"/>-->
+		<Grid.Background>
+			<ImageBrush ImageSource="/Images/Houses01.jpg"/>
+		</Grid.Background>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="Auto" />
+		</Grid.ColumnDefinitions>
+
+		<Button Tapped="GotLogoTapped" Grid.Row="0" Grid.Column="0">
+			<Image Source="/Images/GOTlogo.png" Width="150"/>
+		</Button>
+
+
+		<Border Grid.Row="0" Grid.Column="1">
+			<Border.Background>
+				<SolidColorBrush Color="White" Opacity="0.4"/>
+			</Border.Background>
+			<TextBlock Text="Sworn Members" HorizontalAlignment="Center" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" />
+		</Border>
+		<ListView x:Name="SwornMembersList" DoubleTapped="SwornMembersDoubleTapped" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Height="500" Margin="0,0,0,0" VerticalAlignment="Top" ItemsSource="{Binding SwornMembers}">
+			<!--itt is lehetne ez de akkor a list-ben levo elemek is elhalvanyulnak: Background="White"  Opacity="0.7"-->
+			<ListView.Background>
+				<SolidColorBrush Color="White" Opacity="0.4"/>
+			</ListView.Background>
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<TextBlock Text="{Binding name}" />
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+
+		<Border Grid.Row="0" Grid.Column="2">
+			<Border.Background>
+				<SolidColorBrush Color="White" Opacity="0.4"/>
+			</Border.Background>
+			<TextBlock Text="Cadet Branches" HorizontalAlignment="Center" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" />
+		</Border>
+		<ListView x:Name="CadetBranchesList" DoubleTapped="CadetBranchesDoubleTapped" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left" Height="150" Margin="0,0,0,0" VerticalAlignment="Top" ItemsSource="{Binding CadetBranches}">
+			<!--itt is lehetne ez de akkor a list-ben levo elemek is elhalvanyulnak: Background="White"  Opacity="0.7"-->
+			<ListView.Background>
+				<SolidColorBrush Color="White" Opacity="0.4"/>
+			</ListView.Background>
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<TextBlock Text="{Binding name}" />
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+
+		<Border Grid.Row="0" Grid.Column="3">
+			<Border.Background>
+				<SolidColorBrush Color="White" Opacity="0.4"/>
+			</Border.Background>
+			<TextBlock Text="Ancestral Weapons" HorizontalAlignment="Center" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" />
+		</Border>
+		<ListView Grid.Row="1" Grid.Column="3" HorizontalAlignment="Left" Height="150" Margin="0,0,0,0" VerticalAlignment="Top" ItemsSource="{Binding AncestralWeapons}">
+			<!--itt is lehetne ez de akkor a list-ben levo elemek is elhalvanyulnak: Background="White"  Opacity="0.7"-->
+			<ListView.Background>
+				<SolidColorBrush Color="White" Opacity="0.4"/>
+			</ListView.Background>
+		</ListView>
+
+		<Border Grid.Row="0" Grid.Column="4">
+			<Border.Background>
+				<SolidColorBrush Color="White" Opacity="0.4"/>
+			</Border.Background>
+			<TextBlock Text="Seats" HorizontalAlignment="Center" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" />
+		</Border>
+		<ListView Grid.Row="1" Grid.Column="4" HorizontalAlignment="Left" Height="150" Margin="0,0,0,0" VerticalAlignment="Top" ItemsSource="{Binding Seats}">
+			<!--itt is lehetne ez de akkor a list-ben levo elemek is elhalvanyulnak: Background="White"  Opacity="0.7"-->
+			<ListView.Background>
+				<SolidColorBrush Color="White" Opacity="0.4"/>
+			</ListView.Background>
+		</ListView>
+
+		<Border Grid.Row="0" Grid.Column="5">
+			<Border.Background>
+				<SolidColorBrush Color="White" Opacity="0.4"/>
+			</Border.Background>
+			<TextBlock Text="Titles" HorizontalAlignment="Center" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" />
+		</Border>
+		<ListView Grid.Row="1" Grid.Column="5" HorizontalAlignment="Left" Height="150" Margin="0,0,0,0" VerticalAlignment="Top" ItemsSource="{Binding House.titles}">
+			<!--itt is lehetne ez de akkor a list-ben levo elemek is elhalvanyulnak: Background="White"  Opacity="0.7"-->
+			<ListView.Background>
+				<SolidColorBrush Color="White" Opacity="0.4"/>
+			</ListView.Background>
+		</ListView>
+
+
+		<Border Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" Margin="0,0,0,187" VerticalAlignment="Stretch">
+			<Border.Background>
+				<SolidColorBrush Color="White" Opacity="0.4"/>
+			</Border.Background>
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="Auto" />
+				</Grid.ColumnDefinitions>
+				<TextBlock Text="House's name: " Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+				<TextBlock Text="{Binding House.name}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0"  TextWrapping="Wrap" VerticalAlignment="Top"/>
+
+				<TextBlock Text="Region: " Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+				<TextBlock Text="{Binding House.region}" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0"  TextWrapping="Wrap" VerticalAlignment="Top"/>
+
+				<TextBlock Text="Words: " Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+				<TextBlock Text="{Binding House.words}" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0"  TextWrapping="Wrap" VerticalAlignment="Top"/>
+
+				<TextBlock Text="Coat of Arms: " Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+				<TextBlock Text="{Binding House.coatOfArms}" MaxWidth="400" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0"  TextWrapping="Wrap" VerticalAlignment="Top"/>
+
+				<TextBlock Text="Current lord: " Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+				<Button x:Name="Currentlord" Tapped="NavigateToCurrentLord" Content="{Binding CurrentLord.name}" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+
+				<TextBlock Text="Heir: " Grid.Row="5" Grid.Column="0" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+				<Button x:Name="Heir" Tapped="NavigateToHeir" Content="{Binding Heir.name}" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+
+				<TextBlock Text="Overlord: " Grid.Row="6" Grid.Column="0" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+				<Button x:Name="Overlord" Tapped="NavigateToOverlord" Content="{Binding Overlord.name}" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+
+				<TextBlock Text="Founded: " Grid.Row="7" Grid.Column="0" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+				<TextBlock Text="{Binding House.founded}" Grid.Row="7" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0"  TextWrapping="Wrap" VerticalAlignment="Top"/>
+
+				<TextBlock Text="Founder: " Grid.Row="8" Grid.Column="0" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+				<Button Name="Founder" Tapped="NavigateToFounder" Content="{Binding  Founder.name}" Grid.Row="8" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+
+				<TextBlock Text="Died out: " Grid.Row="9" Grid.Column="0" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+				<TextBlock Text="{Binding  House.diedOut}" Grid.Row="9" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0"  TextWrapping="Wrap" VerticalAlignment="Top"/>
+			</Grid>
+		</Border>
+
+
+	</Grid>
+</Page>
